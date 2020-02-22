@@ -21,7 +21,7 @@ namespace Containers
 	{
 
 	}
-
+////////////////////////////////////////////////////////////////////////////
 	// Dictionary insert method
 	bool Dictionary::insert(Key key, Item item) 
 	{
@@ -55,12 +55,38 @@ namespace Containers
 		}
 		return false;
 	}
+////////////////////////////////////////////////////////////////////////////
 
 	// Dictionary lookup method
 	Dictionary::Item* Dictionary::lookup(Key key)
 	{
+		// pass in head as the entry node for going through the list
+		return lookupRec(key, head);
+	}
+
+	// Dictionary lookup recurssion worker method
+	Dictionary::Item* Dictionary::lookupRec(Key key, Node*& node)
+	{
+		Key soughtKey = key;
+
+		if (node != nullptr) {
+			if (node->key == soughtKey) {
+				return &(node->item); // returns reference to node item
+				
+			}
+			return lookupRec(key, node->nextNode); 
+			// returns the next node in the list		
+		}
+
 		return nullptr;
 	}
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
 
 	// Dictionary remove method
 	bool Dictionary::remove(Key key)

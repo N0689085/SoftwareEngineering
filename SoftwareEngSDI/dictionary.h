@@ -20,5 +20,7 @@ namespace Containers
 		struct Node;
 		Node* head;
 		static bool insertRecurssion(Key, Item, Node*&);
+		static Item* lookupRec(Key, Node*&);
+
 	};
 }
